@@ -1,19 +1,19 @@
-
+#function to obtain user's message input
 message = input("Enter a message: ")
+
+#function to obtain user's shift input and store it as an integer
 shift = int(input("Enter your secret number: "))
 
+#function to decrypt the user's message
 def decrypt(message, shift):
     decrypted_message = ""
 
     # Traverse text
     for char in message:
-        # Skip shifting spaces
-        if char.isspace():
-            decrypted_message += char
-        # Decrypt uppercase characters
-        elif char.isupper():
+        #if characters are upper case, decrypt using this line of code
+        if char.isupper():
             decrypted_message += chr((ord(char) - shift - 65) % 26 + 65)
-        # Decrypt lowercase characters
+        # If Character's arent upper case, user this line of code to decrpy the message
         else:
             decrypted_message += chr((ord(char) - shift - 97) % 26 + 97)
 
