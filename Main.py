@@ -20,9 +20,10 @@ def decrypt(message, shift):
         #if characters are upper case, decrypt using this line of code
         if char.isupper():
             decrypted_message += chr((ord(char) - shift - 65) % 26 + 65)
-        # If Character's arent upper case, user this line of code to decrpy the message
-        else:
+        elif char.islower():
             decrypted_message += chr((ord(char) - shift - 97) % 26 + 97)
+        else:
+            decrpyted_message += char
 
     return decrypted_message
 
@@ -30,5 +31,5 @@ def decrypt(message, shift):
 # Outputs the text that the user put in, along with a decrypted version and the secret number
 print("Input Text:", message)
 print("Shift amount:", shift)
-decrypted_text = decrypt(message, shift)
-print("Output Text:", decrypted_text)
+decrypted_message = decrypt(message, shift)
+print("Output Text:", decrypted_message)
