@@ -35,10 +35,10 @@ while True:
                     result += char
                 # Encrypt uppercase characters
                 elif char.isupper():
-                    result += chr((ord(char) + shift - 65) % 26 + 65)
+                    result += chr((ord(char) - shift - 65) % 26 + 65)
                 # Encrypt lowercase characters
                 elif char.islower():
-                    result += chr((ord(char) + shift - 97) % 26 + 97)
+                    result += chr((ord(char) - shift - 97) % 26 + 97)
                 else: 
                     result += char
 
