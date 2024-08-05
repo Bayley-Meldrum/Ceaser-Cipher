@@ -3,7 +3,7 @@ while True:
     choice = input("If you are encrypting text, please enter 'E'. If you are decrypting text, please enter 'D': ")
 
     # If statement that checks if users are encrypting or decrypting texts
-    if choice == "d" or "D":
+    if choice.lower() == "E":
         # Input validation loop for text containing only letters and spaces
         while True:
             message = input("Please input your message: ")
@@ -50,7 +50,7 @@ while True:
         decrypted_text = decrypt(message, shift)
         print("Output Text: " + decrypted_text)
 
-    elif choice == "e" or "E":
+    elif choice.lower() == "e":
         # Input validation loop for text containing only letters and spaces
         while True:
             message = input("Please input your message: ")
