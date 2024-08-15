@@ -1,54 +1,18 @@
+from functions import obtain_variables
+from functions import decrypt
+
 while True:
     # Asks the user if they are encrypting or decrypting text
     choice = input("If you are encrypting text, please enter 'E'. If you are decrypting text, please enter 'D': ")
 
     # If statement that checks if users are encrypting or decrypting texts
     if choice.upper() == "D":
-        # Input validation loop for text containing only letters and spaces
-        while True:
-            message = input("Please input your message: ")
-            if message.strip() == "":
-                print("Invalid input. Please enter a message that is not blank or contains only spaces.")
-            else:
-                break
+        obtain_variables()
+        decrypt()
+        printing()
         
-        # Shift input validation loop
-        while True:
-            try:
-                # Asks the user what shift number they would like to use to decrypt their message and stores it as a variable
-                shift = int(input("Please input your shift number (1-25): "))
-                if shift >0:  # Check if the shift number is larger than 0 
-                    break
-                else:
-                    print("Invalid input. Please enter a number between 1 and 25.")
-            except ValueError:
-                print("Invalid input. Please enter a valid number.")
 
-        # Decrypts the text that the user inputs
-        def decrypt(message, shift):
-            result = ""
-
-            # Traverse text
-            for char in message:
-                # Skip shifting spaces
-                if char.isspace():
-                    result += char
-                # Encrypt uppercase characters
-                elif char.isupper():
-                    result += chr((ord(char) - shift - 65) % 26 + 65)
-                # Encrypt lowercase characters
-                elif char.islower():
-                    result += chr((ord(char) - shift - 97) % 26 + 97)
-                else: 
-                    result += char
-
-            return result
-
-        # Outputs the text that the user put in, along with a decrypted version and the shift number
-        print("Input Text: " + message)
-        print("Shift Number: " + str(shift))
-        decrypted_text = decrypt(message, shift)
-        print("Output Text: " + decrypted_text)
+        
 
     elif choice.upper() == "E":
         # Input validation loop for text containing only letters and spaces
