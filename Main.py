@@ -1,3 +1,4 @@
+import os
 while True:
     # Asks the user if they are encrypting or decrypting text
     choice = input("If you are encrypting text, please enter 'E'. If you are decrypting text, please enter 'D': ")
@@ -49,7 +50,12 @@ while True:
         print("Shift Number: " + str(shift))
         decrypted_text = decrypt(message, shift)
         print("Output Text: " + decrypted_text)
-
+        def write_to_file():
+            with open('output.txt', 'w') as f:
+                if not os.path.isfile('output.txt'):
+                    open('output.txt', 'w').close()
+                with open('output.txt', 'w') as f:
+                    f.write(decrypted_text)
     elif choice.upper() == "E":
         # Input validation loop for text containing only letters and spaces
         while True:
@@ -96,6 +102,13 @@ while True:
         print("Shift Number: " + str(shift))
         encrypted_text = encrypt(message, shift)
         print("Output Text: " + encrypted_text)
+
+        def write_to_file():
+            with open('output.txt', 'w') as f:
+                if not os.path.isfile('output.txt'):
+                    open('output.txt', 'w').close()
+                with open('output.txt', 'w') as f:
+                    f.write(encrypted_text)
 
     # Outputs text that tells the user to restart the program if they spelled 'encrypt' or 'decrypt' wrong
     else:
