@@ -3,21 +3,21 @@ import os
 pass
 def save_to_file(message, folder, filename):
     while True:
-        save_file = input(f"Do you want to save this {folder} message to a .txt file? (yes/no): ").lower()
-        if save_file == "yes":
+        writechoice = input("Do you want to write your output to a file? (Y/N): ")
+        if writechoice.upper() == "Y":
             filepath = os.path.join("Cipher Output", folder)
             if not os.path.exists(filepath):
                 os.makedirs(filepath)
             filepath = os.path.join(filepath, filename)
             with open(filepath, "a") as file:  # Use "a" mode for appending instead of "w" mode for writing
-                file.write(message + "\n")  # Append the text and add a newline character at the end
-            print(f"{folder}ed text saved to {filename}")
-            break
-        elif save_file == "no":
-            print(f"{folder} text not saved.")
+                file.write(f"Modified text: {message} Shift value: {shift}\n")
+                print("Successfully written to file.")
+                break
+        elif writechoice.upper() == "N":
+            print("Not writing to file.")
             break
         else:
-            print("Invalid input. Please enter 'yes' or 'no' only.")
+            print("Invalid choice. Please enter 'Y' or 'N'.")
 
 while True:
     # Asks the user if they are encrypting or decrypting text
@@ -37,7 +37,7 @@ while True:
                 while True:
                     try:
                         # Asks the user what shift number they would like to use to decrypt their message and stores it as a variable
-                        shift = int(input("Please input your shift number (1-25): "))
+                        shift = int(input("Please input your shift number: "))
                         if shift >0:  # Check if the shift number is larger than 0 
                             break
                         else:
@@ -72,7 +72,7 @@ while True:
                     print("Shift Number:", shift)
                     decrypted_text = decrypt(message, shift)
                     print("Output Text:", decrypted_text)
-                    save_to_file(decrypted_text, "Decrypt", "decrypted.txt")
+                    save_to_file(decrypted_text, "output", "output.txt")
                     break
 
                 elif choice.upper() in ["E", "ENCRYPT"]:
@@ -101,10 +101,9 @@ while True:
                     print("Shift Number: " + str(shift))
                     encrypted_text = encrypt(message, shift)
                     print("Output Text: " + encrypted_text)
-                    save_to_file(encrypted_text, "Encrypt", "encrypted.txt")
+                    save_to_file(encrypted_text, "output", "output.txt")
                     break
             
     # Outputs text that tells the user to restart the program if they spelled 'encrypt' or 'decrypt' wrong
     else:
         print("Invalid choice. Please enter either 'E' or 'D' correctly.")
-
